@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Web RTC test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<body>
+		<video id="face" width="400" height="300" autoplay="1" ></video>
+
+   <script type="text/javascript">
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || window.navigator.mozGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+
+    var video = document.getElementById('face');
+    var localStream = null;
+    navigator.getUserMedia({video: true, audio: false},
+     function(stream) { // for success case
+      console.log(stream);
+      video.src = window.URL.createObjectURL(stream);
+     },
+     function(err) { // for error case
+      console.log(err);
+     }
+    );
+   </script>
+
+	</body>
+</html>
